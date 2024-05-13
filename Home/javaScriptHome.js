@@ -1,5 +1,19 @@
 //Opciones menu
 document.addEventListener("DOMContentLoaded", function () {
+  
+
+  function showcontainerpop() {
+    $('.container-pop').addClass('show');
+    $('.pop-up-wrap').addClass('show');
+   }
+
+   $("#close").click(function(){
+    $('.container-pop').removeClass('show');
+    $('.pop-up-wrap').removeClass('show');
+});
+
+   setTimeout (showcontainerpop, 2000);
+  
   var button = document.getElementById("buttonProducts");
   var button2list = document.getElementById("buttonProducts2");
   var options = document.getElementById("optionProducts");
@@ -75,3 +89,5 @@ document.addEventListener("DOMContentLoaded", function () {
     boton.addEventListener("click", mostrarOcultarContenidoDesplegables);
   });
 });
+
+

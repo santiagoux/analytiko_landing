@@ -15,6 +15,95 @@
 }
 
 
+/* Ventana modal */
+
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.pop-up{
+ 
+  background-repeat: no-repeat;
+  text-align: center;
+  -webkit-box-align: center;
+    -ms-flex-align: center;
+  background-size: cover;
+   position: relative;
+
+}
+
+.imagen-mobile {
+  display: none;
+  position: relative;
+  
+}
+
+.imagen {
+  width: 70%;
+  height: 70%;
+  position: relative;
+}
+
+.icon-close {
+  margin-left: -40px;
+  margin-top: 15px;
+  position: absolute;
+  width: 20px;
+  height: auto;
+
+}
+
+
+
+.container-pop {
+background: rgba(48, 48, 48, 0.5);
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+display: flex;
+-webkit-box-display:flex; 
+-ms-flexbox-display: flex;
+-webkit-box-align: center;
+-ms-flex-align: center;
+align-items: center;
+visibility: hidden;
+z-index: 9999999999999;
+
+}
+
+.container-pop.show {
+visibility: visible;
+
+
+}
+
+.pop-up-wrap{
+
+  margin-left: auto;
+  margin-right: auto;
+  transform: scale(0.6); -webkit-transform scale(0.6);
+  opacity: 0;
+  transition: .3s ease all; -webkit-transition .3s ease all;
+}
+
+.pop-up-wrap.show{
+  transform: scale(1); -webkit-transform scale(1);
+  opacity: 1;
+}
+
+#close {
+  cursor: pointer;
+}
+
 
 #contenedor-cards::before {
   content: "";
@@ -2000,6 +2089,46 @@ a {
   }
   
 }
+
+
+/* Responsive modal */
+
+@media (max-width: 700px) {
+  .imagen {
+width: 90%;
+height: 90%;
+  }
+
+  .icon-close {
+      width: 20px;
+      height: auto;
+      margin-left: -30px;
+  }
+      
+      
+  }
+
+  @media (max-width: 600px) {
+      .imagen-mobile {
+          display: block;
+          width: 310px;
+          
+      }
+
+      .imagen {
+          display: none;
+      }
+
+     .container-pop {
+      justify-content: center;
+     }
+
+     .icon-close {
+      top: 5px;
+      right: 10px;
+     }
+     
+  }
 
 /* Animaciones */
 slide-bottom {
