@@ -11,65 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <title>Contacto</title>
     <link rel="stylesheet" href="css-contacto.css">
-    <script src="./javaScriptContacto.js"></script>
-    <script type="text/javascript">
-        var verifyCallback = function (response) {
-          var button = document.querySelector(".form-submit-btn");
-          button.disabled = false;
-          console.log("Captcha completado");
-        };
-  
-        var onloadCallback = function () {
-          grecaptcha.render("example3", {
-            sitekey: "6LdZVp4pAAAAAOn7YE05sAGWJk4uWSHFAwcsu3Mc",
-            callback: verifyCallback,
-            theme: "dark",
-          });
-        };
-  
-        function loadCaptcha() {
-          grecaptcha.render("example3", {
-            sitekey: "6LdZVp4pAAAAAOn7YE05sAGWJk4uWSHFAwcsu3Mc",
-            callback: verifyCallback,
-            theme: "dark",
-          });
-        }
-  
-        document.addEventListener("DOMContentLoaded", function () {
-          var button = document.querySelector(".form-submit-btn");
-          var formInvalid = true;
-          var captchaContainer = document.getElementById("example3");
-          button.addEventListener("click", function () {
-            alert("Gracias por comunicarte, responderemos en brevedad");
-          });
-  
-          function disableField() {
-            const invalidForm = document.querySelector("form:invalid");
-            if (invalidForm) {
-              formInvalid = true;
-              captchaContainer.classList.add("invisible");
-            } else {
-              formInvalid = false;
-              button.disabled = true;
-              captchaContainer.classList.remove("invisible");
-            }
-          }
-  
-          disableField();
-  
-          const inputs = document.getElementsByTagName("input");
-          for (let input of inputs) {
-            input.addEventListener("change", disableField);
-          }
-  
-          const textArea = document.getElementsByTagName("textarea");
-          textArea[0].addEventListener("change", disableField);
-  
-          if (!formInvalid) {
-            loadCaptcha(); // Carga el reCAPTCHA si formInvalid es falso
-          }
-        });
-      </script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdJW9kpAAAAADEnA_L9r8J-BfLFJy-IIYIoXQtk"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../Contacto/javaScriptContacto.js"></script>
+ 
       <link rel="icon" href="../Assets/icon_paginaweb.png">
 </head>
 <body>
@@ -280,53 +225,58 @@
             <!-- Formulario -->
     
             <div class="contenedor-2">
-                <div class="subtitulo-contacto">
-                    <h4><i class="fa-solid fa-caret-down" style="color: #f9ac54;"></i>ENVÍANOS UN MENSAJE</h4>
-                </div>
-                <div class="form-container">
-                    <form class="form" id="form"  action="https://formsubmit.co/analytiko.formulario@gmail.com" method="POST">
-                      <label for="nombre">Nombre</label>
-                         
+              <div class="subtitulo-contacto">
+                  <h4><i class="fa-solid fa-caret-down" style="color: #f9ac54;"></i>ENVÍANOS UN MENSAJE</h4>
+              </div>
+              <div class="form-container formfields">
+                  <form  id="contact" class="contact"  method="POST">
+                    <input type="hidden" name="recaptchaResponse" id="recaptchaResponse">
+                    <label for="nombre">Nombre</label>
+                       
+                    <div class="form-group">
+                          <input  type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required="" >
+                      </div>
+                      <p id="nombreRequired"  class="requiredInput hide ">* El nombre es requerido</p>
+
+                      <label for="empresa">Empresa</label>
+
                       <div class="form-group">
-                            <input  type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required="" >
-                        </div>
-                        <p id="nombreRequired"  class="requiredInput hide ">* El nombre es requerido</p>
+                        <input  type="text" id="empresa" name="empresa" placeholder="Ingrese nombre de su Empresa" required="" >
 
-                        <label for="empresa">Empresa</label>
+                    </div>
+                    <p id="empresaRequired"  class="requiredInput hide ">* El nombre de la empresa es requerido</p>
+                    <label for="correo">Correo electrónico</label>
 
-                        <div class="form-group">
-                          <input  type="text" id="empresa" name="empresa" placeholder="Ingrese nombre de su Empresa" required="" >
+                      <div class="form-group">
+                          <input    type="text" id="correo" name="correo"  placeholder="Ingrese correo electronico de su empresa" required="">
 
                       </div>
-                      <p id="empresaRequired"  class="requiredInput hide ">* El nombre de la empresa es requerido</p>
-                      <label for="correo">Correo electrónico</label>
-
-                        <div class="form-group">
-                            <input    type="text" id="correo" name="correo"  placeholder="Ingrese correo electronico de su empresa" required="">
-
-                        </div>
-                        <p id="correoRequired"  class="requiredInput requiredInputEmpresa hide ">* El correo de la empresa es requerido</p>
-                        <p id="inputEmailFormat"  class="emailValidation hide ">* El correo debe tener un formato como "ejemplo@correo.com"</p>
-                        
-                        <label for="ayuda">¿Cómo podemos ayudarte?</label>
-
-                        <div class="form-group form-group-final">
-                                <textarea  placeholder="Ingrese su consulta" type="text" id="ayuda" name="ayuda" required="" class=" ayuda"></textarea>
+                      <p id="correoRequired"  class="requiredInput requiredInputEmpresa hide ">* El correo de la empresa es requerido</p>
+                      <p id="inputEmailFormat"  class="emailValidation hide ">* El correo debe tener un formato como "ejemplo@correo.com"</p>
                       
-                            </div>
-                            <p id="ayudaRequired"  class="requiredInput requiredInputConsulta hide ">* La consulta es requerida</p>
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_template" value="table">
-                            <!-- <input type="hidden" name="_cc" value="info@analytikogroup.com"> -->
-                            <input type="hidden" name="_next" value="./Contacto/Contacto_Analytiko_web.html">
-                            <div id="example3" class="invisible"></div>
-                            
-                            <p class="requiredAll hide" id="allRequired">* Todos los campos son requeridos</p>
-                            <button class="form-submit-btn" disabled="true" type="submit">ENVIAR MENSAJE</button>
-                            
-                    </form>
-                </div>
-            </div>
+                      <label for="ayuda">¿Cómo podemos ayudarte?</label>
+
+                      <div class="form-group form-group-final">
+                              <textarea  placeholder="Ingrese su consulta" type="text" id="ayuda" name="ayuda" required="" class=" ayuda"></textarea>
+                    
+                          </div>
+                          <p id="ayudaRequired"  class="requiredInput requiredInputConsulta hide ">* La consulta es requerida</p>
+                          <input type="hidden" name="_captcha" value="false">
+                          <input type="hidden" name="_template" value="table">
+                          <!-- <input type="hidden" name="_cc" value="info@analytikogroup.com"> -->
+                          <input type="hidden" name="_next" value="./Contacto/Contacto_Analytiko_web.html">
+                          <div id="example3" class="invisible"></div>
+                          
+                          <p class="requiredAll hide" id="allRequired">* Todos los campos son requeridos</p>
+                          <button class="form-submit-btn"  type="submit">ENVIAR MENSAJE</button>
+                          
+                  </form>
+                  <p class="text-center">
+                    <small>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</small>
+                </p>
+              </div>
+              <div id="alert" class="alertText text-center"></div>
+          </div>
             <!--Información de contacto-->
 
             <div class="contacto-info">
@@ -523,11 +473,7 @@
     </div>
 </div>
  
-<script 
-src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-async
-defer
-></script>
+
 </body>
 </body>
 </html>

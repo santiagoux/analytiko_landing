@@ -10,6 +10,12 @@
 * {
   box-sizing: border-box;
 }
+.alertText{
+  font-size: 30px;
+  margin: 0px 15px 0px 148px;
+  width: 303px;
+  color: white;
+}
 .pOptionPhone{pointer-events: none;
   height: 38px;
   padding-top: 20px;
@@ -876,6 +882,11 @@ a {
     font-family: Montserrat;
     margin-left: 40px;
     margin-top: 25px;
+  }
+  .alertText{
+    font-size: 30px;
+    margin: 0px 15px 0px 27px;
+    width: 303px;
   }
 }
 
